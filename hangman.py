@@ -6,6 +6,7 @@
 
 # OPTIONAL BUT GREAT
 # score system
+# list of used characters
 
 from os import system
 from time import sleep
@@ -20,15 +21,20 @@ def randword():
   return options[randint(0,170)]
 
 def draw_ui(game_status):
-  mistakes, board, win_word = \
-  itemgetter('mistakes', 'board', 'win_word')(game_status)
+  mistakes, board, win_word, used_chars = \
+  itemgetter('mistakes', 'board', 'win_word', 'used_chars')(game_status)
   splitted_word = list(win_word)
 
   print(sprites.OTHERS['title_banner'])
   print(sprites.HANGMAN[mistakes])
-  print(board)
   print(win_word)
-  user_char = input('Try to guess the word. \n Enter a letter: ')
+  print(board)
+  print('You have enterd this letters \n', ','.join(used_chars))
+  try:
+    user_char = input('Try to guess the word. \n Enter a letter: ')
+    game_status['used_chars'] = used_chars.append(user_char)
+  except ValueError:
+    pass
   iserror = True   #flag to decide wether to add a mistake or not
 
   for index in range(len(splitted_word)):
@@ -64,6 +70,7 @@ def game(win_word):
     'mistakes': 0,
     'board': ['_' for letter in list(win_word)],
     'iswinner': False,
+    'used_chars': []
   }
 
   while not game_status['gameover']:
