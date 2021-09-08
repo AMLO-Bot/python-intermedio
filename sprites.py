@@ -6,19 +6,20 @@ OTHERS = {
     /_/ /_/ /_/  |_| /_/ |_/  \____/ /_/  /_/ /_/  |_| /_/ |_/  
   """,
   'win_game': """
-            .od8888888bo._
-        .dP"'   @#@   '"Yb.
-      .d"'      #@#      '"b.
-      d"'        @#@        '"b
-    d'          #@#          'b
-    dP           @#@           Yb   YOU
-    8l          oDWBo          l8   WIN
-    Yb        o@#@B@#@o        dP
-    YI     o@#* #P# *#@o     IP
-      YI  o@#*   @#@   *#@o  IP
-      "9@#*     #@#     *#@P"
-        "8b     @#@     d8"
-          `"Y888888888P"`
+
+
+   /---------------------------- \\
+   | YOU SAVE HIM FROM THE ROPE |
+   | CONSIDER YOURSELF A HERO   |
+   \\___________________________/
+                            |\
+                            )
+                            /
+          ▄▀▄     ▄▀▄
+         ▄█░░▀▀▀▀▀░░█▄
+     ▄▄  █░░░░░░░░░░░█  ▄▄
+    █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█
+
   """,
   'lose_game': """
     You couldnt save him from being hanged
@@ -27,13 +28,13 @@ OTHERS = {
       :g g   :
       : o    `.
       :         ``.
-    :    YOU       `.
-    :  :   LOSE   .   `.
-    :   :          ` . `.
+    :    YOU       `.          art by:
+    :  :   LOSE   .   `.       Donovan
+    :   :          ` . `.      Blake
     `.. :            `. ``;
-        `:;  by:       `:'
-          :  Donovan     `.
-          `.      Bake    `.     .
+        `:;             `:'
+          :              `.
+          `.              `.     .
               `'`'`'`---..,___`;.-'
   """
 }

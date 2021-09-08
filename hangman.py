@@ -5,7 +5,6 @@
 # score system
 
 from os import system
-from time import sleep
 from random import randint
 from operator import itemgetter
 import sprites
@@ -16,16 +15,22 @@ def randword():
     options = [line.rstrip('\n') for line in f.readlines()]
   return options[randint(0,170)]
 
-def draw_ui(game_status):
+def repaint_window(game_status):
   mistakes, board, win_word, used_chars = \
   itemgetter('mistakes', 'board', 'win_word', 'used_chars')(game_status)
   splitted_word = list(win_word)
+
   print(sprites.OTHERS['title_banner'])
   print(sprites.HANGMAN[mistakes])
   print('[',' '.join(board),']')
-  print('\nYou have enterd this letters \n', '-'.join(used_chars))
+  print('\nEstas son las letras que has usado \n', '-'.join(used_chars))
+
   try:
-    user_char = input('Try to guess the word. \n Enter a letter: ').lower()
+    user_char = input("""
+      Trata de adivinar la palabra
+      IMPORTANTE: Algunas palabras llevan acentos
+      Introduce una letra:
+      """).lower()
     if not user_char.isalpha():
       raise ValueError('Debes introducir letras, no se aceptan numeros u otros caracteres')
     if len(user_char) != 1:
@@ -48,32 +53,25 @@ def draw_ui(game_status):
   else:
     game_status['iswinner'] = win_word == ''.join(board)
   
-  sleep(0.5)
   return game_status
 
 def gameend_ui(game_status):
   game_status['gameover'] = True
-  sleep(1)
   system('clear')
   print(sprites.OTHERS['win_game'] 
     if game_status.get('iswinner') 
     else sprites.OTHERS['lose_game']
   )
-  sleep(3)
+  input('Press any key to end the game...')
   system('clear')
 
-def game(win_word):
-  game_status = {
-    'win_word': win_word,
-    'gameover': False,
-    'mistakes': 0,
-    'board': ['_' for letter in list(win_word)],
-    'iswinner': False,
-    'used_chars': ['']
-  }
-
+def game(game_status):
+  win_word = randword()
+  game_status['win_word'] = win_word
+  game_status['board'] = ['_' for letter in list(win_word)]
+  
   while not game_status['gameover']:
-    game_status = draw_ui(game_status) #update pairs in game_status
+    game_status = repaint_window(game_status) #update pairs in game_status
 
     if game_status.get('iswinner'):
       gameend_ui(game_status)
@@ -84,8 +82,16 @@ def game(win_word):
       
 
 def run():
-  win_word = randword()
-  game(win_word)
+  game_status = {
+    'win_word': '',
+    'gameover': False,
+    'mistakes': 0,
+    'board': '',
+    'iswinner': False,
+    'used_chars': ['']
+  }
+
+  game(game_status)
 
 if __name__ == "__main__":
   run()
