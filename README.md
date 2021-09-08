@@ -2,7 +2,7 @@
 
 > HANGMAN is a project developed for the 'Curso de Python Intermedio de Platzi'
 
-## ![HANGMAN capture](./hangman/hangman.jpg)
+## ![HANGMAN capture](https://i.imgur.com/6n0qJHg.png8)
 
 ## How to use
 
